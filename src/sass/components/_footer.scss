@@ -1,0 +1,38 @@
+.footer {
+  padding: 70px 0 0 0;
+  box-shadow: $box-shadow;
+  font-size: 1.1rem;
+
+  &__logo {
+    height: 35px;
+  }
+
+  &__about {
+    p {
+      margin-bottom: 2rem;
+    }
+  }
+
+  &__title {
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+    font-weight: 600;
+  }
+
+  &__content {
+    p {
+      margin-bottom: 1.25rem;
+    }
+  }
+
+  &__about {
+    margin-top: 20px;
+  }
+
+  &__copyright {
+    background-color: #e6e6e6;
+    height: 100px;
+    margin-top: 50px;
+    @include flex(center, center);
+  }
+}
