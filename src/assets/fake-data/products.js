@@ -1,6 +1,5 @@
 const product_01_image_01 = require('../images/products/product-01 (1).jpg');
 const product_01_image_02 = require('../images/products/product-01 (2).jpg');
-// const product_01_image_03 = require('../images/products/product-01 (3).jpg')
 
 const product_02_image_01 = require('../images/products/product-02 (1).jpg');
 const product_02_image_02 = require('../images/products/product-02 (2).jpg');
@@ -241,9 +240,6 @@ const getCartItemsInfo = (cartItems) => {
       });
     });
   }
-  // console.log(res)
-  // console.log('sorted')
-  // console.log(res.sort((a, b) => a.slug > b.slug ? 1 : (a.slug < b.slug ? -1 : 0)))
   return res.sort((a, b) => (a.id > b.id ? 1 : a.id < b.id ? -1 : 0));
 };
 

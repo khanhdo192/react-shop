@@ -83,6 +83,10 @@
         @include tablet {
           margin-left: 10px;
         }
+
+        .cart-items {
+          font-size: 18px;
+        }
       }
 
       @include mobile {

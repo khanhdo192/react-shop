@@ -2,13 +2,28 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import Button from './Button';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { addItem } from '../redux/shopping-cart/cartItemsSlice';
 
 const ProductView = (props) => {
-  const product = props.product;
+  const dispatch = useDispatch();
+
+  let product = props.product;
+
+  if (product === undefined) {
+    product = {
+      price: 0,
+      title: '',
+      colors: [],
+      size: [],
+    };
+  }
+
   const [previewImg, setPreviewImg] = useState(product.image01);
   const [color, setColor] = useState(undefined);
   const [size, setSize] = useState(undefined);
   const [quantity, setQuantity] = useState(1);
+
   const updateQuantity = (type) => {
     if (type === 'plus') {
       setQuantity(quantity + 1);
@@ -25,8 +40,6 @@ const ProductView = (props) => {
   }, [product]);
 
   const check = () => {
-    let res = true;
-
     if (color === undefined) {
       alert('Please select color!');
       return false;
@@ -40,6 +53,15 @@ const ProductView = (props) => {
 
   const addToCart = () => {
     if (check()) {
+      dispatch(
+        addItem({
+          slug: product.slug,
+          color: color,
+          size: size,
+          quantity: quantity,
+          price: product.price,
+        })
+      );
     }
   };
 
@@ -47,6 +69,15 @@ const ProductView = (props) => {
 
   const goToCart = () => {
     if (check()) {
+      dispatch(
+        addItem({
+          slug: product.slug,
+          color: color,
+          size: size,
+          quantity: quantity,
+          price: product.price,
+        })
+      );
       navigate('/cart');
     }
   };
@@ -127,7 +158,7 @@ const ProductView = (props) => {
 };
 
 ProductView.propTypes = {
-  product: PropTypes.object.isRequired,
+  product: PropTypes.object,
 };
 
 export default ProductView;

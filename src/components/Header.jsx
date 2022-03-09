@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useEffect } from 'react';
 import { useRef } from 'react';
+import { useSelector } from 'react-redux';
 import { Link, useLocation } from 'react-router-dom';
 
 import logo from '../assets/images/logoA.png';
@@ -47,6 +48,13 @@ const Header = () => {
 
   const menuToggle = () => menuLeft.current.classList.toggle('active');
 
+  const cartItems = useSelector((state) => state.cartItems.value);
+  const [totalProducts, setTotalProducts] = useState(0);
+
+  useEffect(() => {
+    setTotalProducts(cartItems.reduce((total, item) => total + Number(item.quantity), 0));
+  }, [cartItems]);
+
   return (
     <div className='header' ref={headerRef}>
       <div className='container'>
@@ -84,6 +92,7 @@ const Header = () => {
             <div className='header__menu__item header__menu__right__item'>
               <Link to='/cart'>
                 <i className='bx bx-shopping-bag'></i>
+                {cartItems.length > 0 ? <span className='cart-items'>{totalProducts}</span> : ''}
               </Link>
             </div>
             <div className='header__menu__item header__menu__right__item'>
