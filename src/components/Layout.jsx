@@ -1,24 +1,25 @@
 import React from 'react';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import RoutesConfig from '../routes/RoutesConfig';
 import Footer from './Footer';
 import Header from './Header';
 import ProductViewModal from './ProductViewModal';
 
 const Layout = () => {
+  const { pathname } = useLocation();
+  console.log(pathname);
+
   return (
-    <Router>
-      <div>
-        <Header />
-        <div className='container'>
-          <div className='main'>
-            <RoutesConfig />
-          </div>
+    <div>
+      {pathname !== '/login' ? <Header /> : null}
+      <div className='container'>
+        <div className='main'>
+          <RoutesConfig />
         </div>
-        <Footer />
-        <ProductViewModal />
       </div>
-    </Router>
+      <Footer />
+      <ProductViewModal />
+    </div>
   );
 };
 
